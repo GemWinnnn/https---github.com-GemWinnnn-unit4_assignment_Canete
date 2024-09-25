@@ -186,7 +186,7 @@ class MyHomePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       image: DecorationImage(
-                        image: AssetImage('lib/image/profile${index + 1}.jpg'),
+                        image: AssetImage('lib/image/profile${index + 2}.jpg'),
                         fit: BoxFit.cover,
                       ),
                     ),
