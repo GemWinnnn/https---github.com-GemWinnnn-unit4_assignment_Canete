@@ -168,7 +168,7 @@ class MyHomePage extends StatelessWidget {
               const Text(
                 "Gallery",
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 19,
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(255, 84, 16, 128),
                 ),
