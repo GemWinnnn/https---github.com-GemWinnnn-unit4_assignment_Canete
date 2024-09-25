@@ -22,10 +22,11 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/image/profile.png
+    - lib/image/profile1.png
     - lib/image/profile2.jpg
     - lib/image/profile3.jpg
     - lib/image/profile4.jpg
+    - lib/image/profile5.jpg
 
   fonts:
     - family: Helvetica

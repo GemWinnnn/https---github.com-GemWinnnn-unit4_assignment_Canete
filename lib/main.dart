@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,10 +31,11 @@ class MyHomePage extends StatelessWidget {
           child: Text(
             "Assignment 6",
             style: TextStyle(
-                fontFamily: 'Helvetica',
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold),
+              fontFamily: 'Helvetica',
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         elevation: 0,
@@ -81,6 +81,9 @@ class MyHomePage extends StatelessWidget {
                       ),
                     ],
                   ),
+
+                  // Adding Spacer to push content
+                  Spacer(),
                 ],
               ),
 
@@ -89,7 +92,7 @@ class MyHomePage extends StatelessWidget {
 
               // Bio Section
               const Text(
-                "My Bibliography",
+                "Biography",
                 style: TextStyle(
                   fontSize: 19,
                   fontWeight: FontWeight.bold,
@@ -103,44 +106,67 @@ class MyHomePage extends StatelessWidget {
                 style: TextStyle(fontSize: 16, color: Colors.black87),
                 textAlign: TextAlign.justify,
               ),
-              const SizedBox(height: 20),
-
-              // Carousel Section
-              CarouselSlider(
-                options: CarouselOptions(
-                  height: 200.0,
-                  enlargeCenterPage: true,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 3),
-                  aspectRatio: 2.0,
-                ),
-                items: [
-                  'lib/image/profile.png',
-                  'lib/image/profile2.jpg',
-                  'lib/image/profile3.jpg',
-                ].map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            image: AssetImage(i),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                }).toList(),
-              ),
               const SizedBox(height: 30),
 
               // "What else?" Section
               const Text(
                 "What else?",
+                style: TextStyle(
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 84, 16, 128),
+                ),
+              ),
+              const SizedBox(height: 10),
+
+              //More about me
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                decoration: BoxDecoration(
+                  color: Colors.purple.shade50,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InfoRow(
+                      icon: Icons.email,
+                      label: 'Email',
+                      data: 'Canetegemwin@gmail.com',
+                      iconColor: Color.fromARGB(255, 84, 16, 128),
+                    ),
+                    InfoRow(
+                      icon: Icons.school,
+                      label: 'School',
+                      data: 'West Visayas State University',
+                      iconColor: Color.fromARGB(255, 84, 16, 128),
+                    ),
+                    InfoRow(
+                      icon: Icons.phone,
+                      label: 'Number',
+                      data: '09390290214',
+                      iconColor: Color.fromARGB(255, 84, 16, 128),
+                    ),
+                    InfoRow(
+                      icon: Icons.location_pin,
+                      label: 'Location',
+                      data: 'Iloilo City',
+                      iconColor: Color.fromARGB(255, 84, 16, 128),
+                    ),
+                    InfoRow(
+                      icon: Icons.favorite,
+                      label: 'Loves',
+                      data: 'Exploring',
+                      iconColor: Color.fromARGB(255, 84, 16, 128),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
+
+              // Gallery Section with GridView
+              const Text(
+                "Gallery",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -149,36 +175,23 @@ class MyHomePage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
 
-              // Information Section
-              const InfoRow(
-                icon: Icons.email,
-                label: 'Email',
-                data: 'Canetegemwin@gmail.com',
-                iconColor: Color.fromARGB(255, 84, 16, 128),
-              ),
-              const InfoRow(
-                icon: Icons.school,
-                label: 'School',
-                data: 'West Visayas State University',
-                iconColor: Color.fromARGB(255, 84, 16, 128),
-              ),
-              const InfoRow(
-                icon: Icons.phone,
-                label: 'Number',
-                data: '09390290214',
-                iconColor: Color.fromARGB(255, 84, 16, 128),
-              ),
-              const InfoRow(
-                icon: Icons.location_pin,
-                label: 'Location',
-                data: 'Iloilo City',
-                iconColor: Color.fromARGB(255, 84, 16, 128),
-              ),
-              const InfoRow(
-                icon: Icons.favorite,
-                label: 'Loves',
-                data: 'Exploring',
-                iconColor: Color.fromARGB(255, 84, 16, 128),
+              GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                children: List.generate(4, (index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                        image: AssetImage('lib/image/profile${index + 1}.jpg'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                }),
               ),
             ],
           ),
@@ -206,7 +219,7 @@ class InfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
       child: Row(
         children: [
           Icon(icon, color: iconColor, size: 24),
@@ -219,9 +232,12 @@ class InfoRow extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          Text(
-            data,
-            style: const TextStyle(fontSize: 16),
+          Expanded(
+            child: Text(
+              data,
+              style: const TextStyle(fontSize: 16),
+              overflow: TextOverflow.ellipsis, // Truncate text if too long
+            ),
           ),
         ],
       ),
